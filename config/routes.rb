@@ -1,4 +1,23 @@
 Rails.application.routes.draw do
+  get 'comments/index'
+
+  get 'comments/new'
+
+  get 'comments/create'
+
+  get 'messages/index'
+  get 'messages/' => 'messages#index'
+  get 'messages/new'
+
+  get 'messages/create'
+
+  get 'users/index'
+
+  get 'users/new'
+
+  get 'users/create'
+
+  root 'users#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
