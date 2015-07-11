@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   post '/signin' => 'sessions#create'
   get '/wall' => 'messages#index'
   post '/messages' => 'messages#create'
+  post '/comments' => 'comments#create'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

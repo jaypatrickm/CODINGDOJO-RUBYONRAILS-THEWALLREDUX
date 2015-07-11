@@ -2,7 +2,8 @@ class MessagesController < ApplicationController
   def index
   	@message = Message.new
   	@user = User.find(session[:user_id])
-  	@messages = User.select('messages.id, messages.content, messages.updated_at, messages.user_id, users.first_name, users.last_name').joins(:messages)
+  	# @messages = User.select('messages.id, messages.content, messages.updated_at, messages.user_id, users.first_name, users.last_name').joins(:messages)
+  	@messages = Message.select('messages.*, users.first_name, users.last_name').joins(:user)
   end
 
   def new

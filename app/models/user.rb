@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-	has_many :messages
+	has_many :messages, dependent: :destroy
+	has_many :comments, through: :messages
 	#this allows my form to contain a password field and use it on the model side, even though there is no field
 	#in my database called password (we used encrypted_password)
 	attr_accessor :password, :password_confirmation
