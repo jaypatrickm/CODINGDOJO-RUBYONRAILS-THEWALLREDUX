@@ -13,63 +13,25 @@
 					<h4><%= m.first_name %> <%= m.last_name %> - <%= m.updated_at %></h4>
 					<p><%= m.content %></p>
 					<ul class="comment-container">
-					<li>
-						<h4>Michael Choi - June 14, 2014</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis dolore harum dignissimos ipsam quidem necessitatibus nihil aperiam veritatis veniam placeat temporibus facilis totam quasi cumque id beatae explicabo animi sapiente asperiores, enim natus laborum facere aspernatur repellendus? Ipsa quo sunt eveniet numquam facere illo laboriosam autem, consequuntur quam doloremque, impedit.</p>
-					</li>
-					<div id="comment-form-container">
-						<%= bootstrap_form_for(:comment, :url => '/comments/') do |f| %>
-							<%= f.hidden_field :user_id, value: session[:user_id] %>
-							<%= f.hidden_field :message_id, value: m.id %>
-							<%= f.text_area :content, hide_label: true, placeholder: "Something to add?", rows: 3 %>
-							<%= f.submit "Comment", class: "btn btn-default btn-lg btn-block" %>
+						<% @comments = Comment.select('comments.*, users.first_name, users.last_name').joins(:user).where(message: Message.find(m.id)) %>
+						<% @comments.each do |c| %>
+						<li>
+							<h4><%= c.first_name %> <%= c.last_name %> - <%= c.updated_at %></h4>
+							<p><%= c.content %></p>
+						</li>
 						<% end %>
-					</div>
-				</ul>
+						<div class="comment-form-container">
+							<%= bootstrap_form_for(:comment, :url => '/comments/') do |f| %>
+								<%= f.hidden_field :user_id, value: session[:user_id] %>
+								<%= f.hidden_field :message_id, value: m.id %>
+								<%= f.text_area :content, hide_label: true, placeholder: "Something to add?", rows: 5 %>
+								<%= f.submit "Comment", class: "btn btn-default btn-lg btn-block" %>
+							<% end %>
+		
+						</div>
+					</ul>
 				</li>
 			<% end %>
-			<li>
-				<h4>Dexter Clark - June 14, 2014</h4>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis dolore harum dignissimos ipsam quidem necessitatibus nihil aperiam veritatis veniam placeat temporibus facilis totam quasi cumque id beatae explicabo animi sapiente asperiores, enim natus laborum facere aspernatur repellendus? Ipsa quo sunt eveniet numquam facere illo laboriosam autem, consequuntur quam doloremque, impedit.</p>
-				<ul class="comment-container">
-					<li>
-						<h4>Michael Choi - June 14, 2014</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis dolore harum dignissimos ipsam quidem necessitatibus nihil aperiam veritatis veniam placeat temporibus facilis totam quasi cumque id beatae explicabo animi sapiente asperiores, enim natus laborum facere aspernatur repellendus? Ipsa quo sunt eveniet numquam facere illo laboriosam autem, consequuntur quam doloremque, impedit.</p>
-					</li>
-					<div id="comment-form-container">
-						<h5>Post a comment</h5>
-						<form action='/comment/' class="form-horizontal" method="post">
-							<div class="form-group">
-									<textarea name="comment[content]" class="form-control" rows="3"></textarea>
-							</div>
-							<div class="form-group">
-								<div class="col-sm-offset-9 col-sm-3">
-							    	<button type="submit" class="btn btn-default">Post a comment</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</ul>
-			</li>
-			<li>
-				<h4>Dexter Clark - June 14, 2014</h4>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis dolore harum dignissimos ipsam quidem necessitatibus nihil aperiam veritatis veniam placeat temporibus facilis totam quasi cumque id beatae explicabo animi sapiente asperiores, enim natus laborum facere aspernatur repellendus? Ipsa quo sunt eveniet numquam facere illo laboriosam autem, consequuntur quam doloremque, impedit.</p>
-				<ul class="comment-container">
-					<div id="comment-form-container">
-						<h5>Post a comment</h5>
-						<form action='/comment/' class="form-horizontal" method="post">
-							<div class="form-group">
-									<textarea name="comment[content]" class="form-control" rows="3"></textarea>
-							</div>
-							<div class="form-group">
-								<div class="col-sm-offset-9 col-sm-3">
-							    	<button type="submit" class="btn btn-default">Post a comment</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</ul>
-			</li>
 		</ul>
 	</div>
 </div>

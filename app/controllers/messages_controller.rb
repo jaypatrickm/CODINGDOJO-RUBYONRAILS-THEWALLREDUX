@@ -1,9 +1,10 @@
 class MessagesController < ApplicationController
   def index
   	@message = Message.new
+  	@comment = Comment.new
   	@user = User.find(session[:user_id])
   	# @messages = User.select('messages.id, messages.content, messages.updated_at, messages.user_id, users.first_name, users.last_name').joins(:messages)
-  	@messages = Message.select('messages.*, users.first_name, users.last_name').joins(:user)
+  	@messages = Message.select('messages.*, users.first_name, users.last_name').joins(:user).reverse_order
   end
 
   def new
