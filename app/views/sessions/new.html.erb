@@ -1,0 +1,17 @@
+<div class="row">
+	<div class="col-sm-4 col-sm-offset-4">
+
+	<h1>Sign In</h1>
+	<span id="helpBlock" class="help-block">Don't have an account yet? <a href="/signup">Register here</a>.</span>
+	<% if flash[:error] %>
+		<p class="bg-danger bg-errors"><%= flash[:error] %></p>
+	<% end %>
+
+	<%= bootstrap_form_for(:session, :url => sessions_path) do |f| %>
+	  <%= f.email_field :email, hide_label: true, placeholder: "Email", class: "input-lg" %>
+	  <%= f.password_field :password, hide_label: true, placeholder: "Password", class: "input-lg" %>
+	  <%= f.submit "Sign In", class: "btn btn-primary btn-lg btn-block"  %>
+	<% end %>
+
+	</div>
+</div>

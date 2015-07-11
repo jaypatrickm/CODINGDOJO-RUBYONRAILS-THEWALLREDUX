@@ -1,2 +1,85 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<div class="row">
+	<div class="col-sm-4 col-sm-offset-4">
+
+		<h1>Register</h1>
+		<span id="helpBlock" class="help-block">Already have an account? <a href="/signin">Login here</a>.</span>
+		<% if flash[:errors] %>
+			<% flash[:errors].each do |error| %>
+				<p class="bg-danger bg-errors"><%= error %></p>
+			<% end %>
+		<% end %>
+		<%= bootstrap_form_for(@user) do |f| %>
+		  <%= f.text_field :first_name, hide_label: true, placeholder: "First Name", class: "input-lg" %>
+		  <%= f.text_field :last_name, hide_label: true, placeholder: "Last Name", class: "input-lg" %>
+		  <%= f.email_field :email, hide_label: true, placeholder: "Email", class: "input-lg" %>
+		  <%= f.password_field :password, hide_label: true, placeholder: "Password", class: "input-lg" %>
+		  <%= f.password_field :password_confirmation, hide_label: true, placeholder: "Confirm Password", class: "input-lg" %>
+		  <%= f.submit "Sign Up", class: "btn btn-primary btn-lg btn-block" %>
+		<% end %>
+
+	</div>
+</div>
+<!-- 
+<div class="col-sm-12">
+	<div class="col-sm-7">
+
+		<h1>Register</h1>
+		<p>This is where you register!</p>
+
+		<div id="signup-container">
+			<% if flash[:errors] %>
+				<% flash[:errors].each do |error| %>
+					<p><%= error %></p>
+				<% end %>
+			<% end %>
+			<form action='/signup' method="post">
+				<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+				<div class="form-group">
+					<label for="first_name">First Name</label>
+					<input type="text" name="user[first_name]" class="form-control" placeholder="First Name">
+				</div>
+				<div class="form-group">
+					<label for="last_name">Last Name</label>
+					<input type="text" name="user[last_name]" class="form-control" placeholder="Last Name">
+				</div>
+				<div class="form-group">
+					<label for="email">Email</label>
+					<input type="email" name="user[email]" class="form-control" placeholder="Email">
+				</div>
+				<div class="form-group">
+					<label for="password">Password</label>
+					<input type="password" name="user[password]" class="form-control" placeholder="Password">
+				</div>
+				<div class="form-group">
+					<label for="confirm_password">Confirm Password</label>
+					<input type="password" name="user[confirm_password]" class="form-control" placeholder="Confirm Password">
+				</div>
+				<div class="form-group">
+				    <button type="submit" class="btn btn-default">Register</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="col-sm-4 col-sm-offset-1">
+
+		<h1>Login</h1>
+		<p>Welcome back!</p>
+
+		<div id="signin-container">
+			<form action='/signin' method="post">
+				<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+				<div class="form-group">
+					<label for="email">Email</label>
+					<input type="email" name="user[email]" class="form-control" placeholder="Email">
+				</div>
+				<div class="form-group">
+					<label for="password" class="control-label">Password</label>
+					<input type="password" name="user[password]" class="form-control" placeholder="Password">
+				</div>
+				<div class="form-group">
+			    	<button type="submit" class="btn btn-default">Log in</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div> -->

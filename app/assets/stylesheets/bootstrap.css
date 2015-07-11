@@ -6595,14 +6595,17 @@ textarea {
   resize: none;
 }
 
-.template {
+div#main-holder {
   padding: 75px 15px;
 }
 
 div#signup-container, div#signin-container {
-  border: 1px solid #000;
 }
 
 div#message-form-container form textarea {
   size: no-resize;
+}
+
+.bg-errors {
+  padding: 15px;
 }

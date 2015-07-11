@@ -1,23 +1,15 @@
 Rails.application.routes.draw do
-  get 'comments/index'
-
-  get 'comments/new'
-
-  get 'comments/create'
-
-  get 'messages/index'
-  get 'messages/' => 'messages#index'
-  get 'messages/new'
-
-  get 'messages/create'
-
-  get 'users/index'
-
-  get 'users/new'
-
-  get 'users/create'
-
   root 'users#index'
+  resources :users
+  resources :sessions, :only => [:new, :create, :destroy] #only need 3 restful routes for sessions
+  get '/signup' => 'users#new'
+  get '/signin' => 'sessions#new'
+  get '/signout' => 'sessions#destroy'
+  get '/profile/:id' => 'users#show'
+  post '/signup' => 'users#create'
+  post '/signin' => 'sessions#create'
+  get '/wall' => 'messages#index'
+  post '/messages' => 'messages#create'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

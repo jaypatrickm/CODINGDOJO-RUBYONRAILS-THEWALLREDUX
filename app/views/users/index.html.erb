@@ -1,68 +1,24 @@
-<!-- <div class="container">
-	<div class="row"> -->
-		<div class="col-sm-12">
-			<div id="signup-container" class="col-sm-7">
-				<h5>Register</h5>
-				<form action='/signup' class="form-horizontal" method="post">
-					<div class="form-group">
-						<label for="first_name" class="col-sm-3 control-label">First Name</label>
-						<div class="col-sm-9">
-							<input type="text" name="signup[first_name]" class="form-control" placeholder="First Name">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="last_name" class="col-sm-3 control-label">Last Name</label>
-						<div class="col-sm-9">
-							<input type="text" name="signup[last_name]" class="form-control" placeholder="Last Name">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="email" class="col-sm-3 control-label">Email</label>
-						<div class="col-sm-9">
-							<input type="email" name="signup[email]" class="form-control" placeholder="Email">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="password" class="col-sm-3 control-label">Password</label>
-						<div class="col-sm-9">
-							<input type="password" name="signup[password]" class="form-control" placeholder="Password">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="confirm_password" class="col-sm-3 control-label">Confirm Password</label>
-						<div class="col-sm-9">
-							<input type="confirm_password" name="signup[confirm_password]" class="form-control" placeholder="Confirm Password">
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-offset-3 col-sm-10">
-					    	<button type="submit" class="btn btn-default">Register</button>
-						</div>
-					</div>
-				</form>
-			</div>
-			<div id="signin-container" class="col-sm-offset-1 col-sm-4">
-				<h5>Log In</h5>
-				<form action='/signin' class="form-horizontal" method="post">
-					<div class="form-group">
-						<label for="email" class="col-sm-3 control-label">Email</label>
-						<div class="col-sm-9">
-							<input type="email" name="signup[email]" class="form-control" placeholder="Email">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="password" class="col-sm-3 control-label">Password</label>
-						<div class="col-sm-9">
-							<input type="password" name="signup[password]" class="form-control" placeholder="Password">
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-offset-3 col-sm-10">
-					    	<button type="submit" class="btn btn-default">Log in</button>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-<!-- 	</div>
-</div> -->
+<div class="row">
+	<div class="col-sm-4 col-sm-offset-4 text-center">
+		<h1>The Wall Redux</h1>
+		<p>A place for interesting ideas. Come and share you thoughts with the world.</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-4 col-sm-offset-4">
+		<% if flash[:errors] %>
+			<% flash[:errors].each do |error| %>
+				<p class="bg-danger bg-errors"><%= error %></p>
+			<% end %>
+		<% end %>
+		<%= bootstrap_form_for(@user) do |f| %>
+		  <%= f.text_field :first_name, hide_label: true, placeholder: "First Name", class: "input-lg" %>
+		  <%= f.text_field :last_name, hide_label: true, placeholder: "Last Name", class: "input-lg" %>
+		  <%= f.email_field :email, hide_label: true, placeholder: "Email", class: "input-lg" %>
+		  <%= f.password_field :password, hide_label: true, placeholder: "Password", class: "input-lg" %>
+		  <%= f.password_field :password_confirmation, hide_label: true, placeholder: "Confirm Password", class: "input-lg" %>
+		  <%= f.submit "Sign Up", class: "btn btn-primary btn-lg btn-block" %>
+		<% end %>
+
+	</div>
+</div>

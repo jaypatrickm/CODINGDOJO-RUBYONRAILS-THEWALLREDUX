@@ -16,20 +16,18 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">The Wall Redux</a>
+      <a class="navbar-brand" href="/">The Wall Redux</a>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/users/profile">Profile</a></li>
-        <li><a href="/signout/">Sign Off</a></li>
+        <li><a href="/profile/<%= session[:user_id] %>">Profile</a></li>
+        <li><a href="/signout">Sign Off</a></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>
 </nav>
-<div class="container">
-	<div class="template">
+<div id="main-holder" class="container">
 <%= yield %>
-	</div>
 </div>
 </body>
 </html>
